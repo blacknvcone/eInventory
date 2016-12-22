@@ -1,0 +1,7 @@
+nav{
+    background-color: transparent;
+}
+
+nav ul a, nav .brand-logo {
+    color: black;
+}
