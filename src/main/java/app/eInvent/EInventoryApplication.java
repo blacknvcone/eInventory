@@ -8,22 +8,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EInventoryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EInventoryApplication.class, args);
-
-		/**
-		 * Init class product
-		 */
-		Product product = new Product();
-
-		/**
-		 * Set dummy data product
-		 */
-		product.setProductName("Coklat");
-		product.setProductPrice(10000);
-		product.setProductStock(100);
-
-		/**
-		 * Save dummy data product
-		 */
-		AppContainer.getInstance().getProductDAO().saveProduct(product);
 	}
 }

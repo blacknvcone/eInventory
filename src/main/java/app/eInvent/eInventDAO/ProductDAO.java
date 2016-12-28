@@ -1,8 +1,8 @@
 package app.eInvent.eInventDAO;
-import app.eInvent.eInventModel.Product;
-import java.util.List;
 
-public interface ProductDAO {
-    public void saveProduct(Product product);
-    public List<Product> getAllProduct();
+import org.springframework.data.jpa.repository.JpaRepository;
+import app.eInvent.eInventModel.Product;
+
+public interface ProductDAO extends JpaRepository<Product, Long>{
+
 }
