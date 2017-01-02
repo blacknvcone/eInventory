@@ -16,6 +16,7 @@
                                     <th>Product</th>
                                     <th>Stock</th>
                                     <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -23,6 +24,9 @@
                                     <td th:text="${product.productName}"></td>
                                     <td th:text="${product.productStock}"></td>
                                     <td th:text="${product.productPrice}"></td>
+                                    <td><div class="btn-group">
+                                        <a th:href="@{/product/edit-product/{id}(id=${product.productId})}" ><button type="button" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                    </div></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -34,9 +34,12 @@ public class ServiceProduct {
     public boolean update(Product pro){
         Product tgtProduct = daoProduct.findOne(pro.getProductId());
         if(tgtProduct != null){
+            tgtProduct.setProductId(pro.getProductId());
             tgtProduct.setProductName(pro.getProductName());
             tgtProduct.setProductPrice(pro.getProductPrice());
             tgtProduct.setProductStock(pro.getProductStock());
+
+            daoProduct.save(tgtProduct);
             return true;
         }else{
             return false;

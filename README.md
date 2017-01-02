@@ -12,7 +12,7 @@ Log Development :
   Be Carefully before run , see at application properties for user & pass mysql
 
   Data Control:
-  Product -> Create (done), Read (done), Delete(?) , Edit(?)
+  Product -> Create (done), Read (done), Delete(?) , Edit(done)
   Transaction -> CRUD(?)
   
 -

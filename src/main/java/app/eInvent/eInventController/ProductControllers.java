@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,12 +33,23 @@ public class ProductControllers {
         return "product/insert";
     }
 
+    @RequestMapping(value = "/product/edit-product/{id}", method = RequestMethod.GET)
+    public String formEdit(@PathVariable String id,Model model){
+        Product pro = serviceProduct.getProductById(Long.parseLong(id));
+        model.addAttribute("product",pro);
+        return "product/edit";
+    }
+
     @RequestMapping(value = "/product/submit", method = RequestMethod.POST)
     public String submit(@ModelAttribute Product product) {
         if (serviceProduct.update(product)) {
         } else {serviceProduct.add(product);}
         return "redirect:/product/list-product";
+
+
     }
+
+
     /*
     	@RequestMapping(value = "/bidang/input", method = RequestMethod.GET)
 	public String create(Model model) {
