@@ -25,7 +25,10 @@
                                     <td th:text="${product.productStock}"></td>
                                     <td th:text="${product.productPrice}"></td>
                                     <td><div class="btn-group">
-                                        <a th:href="@{/product/edit-product/{id}(id=${product.productId})}" ><button type="button" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                        <a th:href="@{/product/edit-product/{id}(id=${product.productId})}" >
+                                            <button type="button" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                        <a th:href="@{/product/delete/{id}(id=${product.productId})}" >
+                                            <button type="button" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button></a>
                                     </div></td>
                                 </tr>
                             </tbody>

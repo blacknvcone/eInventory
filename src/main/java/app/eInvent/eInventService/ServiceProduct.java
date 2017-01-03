@@ -60,4 +60,5 @@ public class ServiceProduct {
     public void deleteProduct(Long proId){
         daoProduct.delete(proId);
     }
+
 }

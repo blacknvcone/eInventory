@@ -13,7 +13,11 @@ Log Development :
 
   Data Control:
   Product -> Create (done), Read (done), Delete(?) , Edit(done)
-  Transaction -> CRUD(?)
+  Transaction -> model data (done) waiting for sample json -> CRUD(?)
+  User -> Only Create user (will be added soon)
+
+  Urgent :
+  Form Login !!
   
 -
 -
