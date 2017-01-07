@@ -110,4 +110,6 @@ function submitTransaction(event) {
     console.log(serialize);
 
     $.post("/transaction/submit", serialize);
+
+
 }

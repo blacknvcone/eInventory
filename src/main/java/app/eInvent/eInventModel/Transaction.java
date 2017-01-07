@@ -33,6 +33,8 @@ public class Transaction {
     @Column(name = "date_trans")
     private java.util.Date date_trans;
 
+    public Transaction(){}
+
     public long getTransId(){return transId;}
     public void setTransId(long id){this.transId = id;}
 
@@ -41,6 +43,9 @@ public class Transaction {
 
     public long getProductId(){return productId;}
     public void setProductId(long proId){this.productId = proId;}
+
+    public int getTotalItem(){return totalItem;}
+    public void setTotalItem(int cntItem){this.totalItem = cntItem;}
 
     public java.util.Date getDateField(){return date_trans;}
     public void setDateField(java.util.Date setDate){this.date_trans = setDate;}

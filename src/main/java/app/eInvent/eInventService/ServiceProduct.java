@@ -44,6 +44,27 @@ public class ServiceProduct {
         }
     }
 
+    //Update Stock Product
+    public boolean editStock(Long id,int cnt){
+        Product tgtProduct = daoProduct.getOne(id);
+
+        int oldStock = tgtProduct.getProductStock();
+        int newStock = oldStock - cnt;
+
+        if(tgtProduct != null){
+            tgtProduct.setProductId(tgtProduct.getProductId());
+            tgtProduct.setProductName(tgtProduct.getProductName());
+            tgtProduct.setProductPrice(tgtProduct.getProductPrice());
+            tgtProduct.setProductStock(newStock);
+
+            daoProduct.save(tgtProduct);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     //Get All Product
     public List<Product> getAllProduct(){
         return daoProduct.findAll();

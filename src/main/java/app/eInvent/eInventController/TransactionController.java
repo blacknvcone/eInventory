@@ -4,17 +4,23 @@ package app.eInvent.eInventController;
  * Created by blacknvc on 04/01/2017.
  */
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import app.eInvent.eInventService.ServiceTransaction;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.xml.ws.RequestWrapper;
 import java.awt.*;
 
 @Controller
 public class TransactionController {
+
+    @Autowired
+    private ServiceTransaction servTrans;
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
     public String index()
@@ -22,12 +28,19 @@ public class TransactionController {
         return "transactions/index";
     }
 
-    @RequestMapping(value = "/transaction/submit", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+
+    @RequestMapping(value = "/transaction/submit", method = RequestMethod.POST)
     @ResponseBody
-    public String JSONParse(WebRequest webRequest)
+    public String save (@RequestParam JSONObject serialize)
     {
-        return "Yeay :3";
+       // JSONObject jsO = serialize;
+       // servTrans.addTrans(jsO);
+
+        return ""+serialize;
+
     }
+
+
     //SaveTransaction
     //DeleteTransaction
     //UpdateTransaction
