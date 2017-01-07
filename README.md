@@ -19,8 +19,19 @@ Log Development :
   Urgent :
   Form Login !!
   
--
--
+- Jquery UI Autocomplete in Transaction
+- Serialize format
+  {
+    gross_amount: 12345,
+    name_sales: "SPRING HORE",
+    transaction_date: "yyyy-mm-dd",
+    item: [{
+      product_id: "x",
+      product_name: "xxxx",
+      product_quantity: "x",
+      product_subtotal: "xxx"
+    }]
+  }
 -
 
 
