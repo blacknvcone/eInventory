@@ -23,7 +23,7 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/transaction/submit", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    @JsonFormat
+    @ResponseBody
     public String JSONParse(WebRequest webRequest)
     {
         return "Yeay :3";
