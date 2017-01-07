@@ -1,20 +1,23 @@
 package app.eInvent.eInventController;
 import app.eInvent.eInventModel.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import app.eInvent.eInventService.ServiceProduct;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ProductControllers {
 
     @Autowired
     ServiceProduct serviceProduct;
+    List<Product> data = new ArrayList<Product>();
 
 
     /**
@@ -56,4 +59,10 @@ public class ProductControllers {
         return "redirect:/product/list-product";
     }
 
+    @RequestMapping(value = "/product/search", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Product> getList(WebRequest webRequest)
+    {
+        return serviceProduct.getListProduct(webRequest.getParameter("term"));
+    }
 }

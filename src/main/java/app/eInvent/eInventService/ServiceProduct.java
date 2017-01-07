@@ -5,21 +5,19 @@ package app.eInvent.eInventService;
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.eInvent.eInventDAO.ProductDAO;
 import app.eInvent.eInventModel.Product;
 
+import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ServiceProduct {
+
+    List<Product> data = new ArrayList<Product>();
 
     @Autowired
     private ProductDAO daoProduct;
@@ -59,6 +57,10 @@ public class ServiceProduct {
     //Delete By Id
     public void deleteProduct(Long proId){
         daoProduct.delete(proId);
+    }
+
+    public List<Product> getListProduct(String productName) {
+        return daoProduct.findByProductNameContaining(productName);
     }
 
 }
