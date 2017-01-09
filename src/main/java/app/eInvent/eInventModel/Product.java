@@ -1,10 +1,8 @@
 package app.eInvent.eInventModel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +25,8 @@ public class Product {
     private int productStock;
     @Column(length = 10)
     private int productPrice;
+    @Transient
+    private int productQuantity;
 
     public long getProductId() {
         return productId;
@@ -58,5 +58,13 @@ public class Product {
 
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
     }
 }

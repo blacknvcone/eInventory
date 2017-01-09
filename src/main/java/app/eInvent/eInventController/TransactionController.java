@@ -1,20 +1,22 @@
 package app.eInvent.eInventController;
 
-/**
- * Created by blacknvc on 04/01/2017.
- */
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import app.eInvent.eInventModel.Product;
+import app.eInvent.eInventModel.Transaction;
+import app.eInvent.eInventPayload.TransactionPayload;
+import app.eInvent.eInventService.ServiceProduct;
+import app.eInvent.eInventService.ServiceTransaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
-import java.awt.*;
 
 @Controller
 public class TransactionController {
+
+    @Autowired
+    private ServiceTransaction serviceTransaction;
+    @Autowired
+    private ServiceProduct serviceProduct;
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
     public String index()
@@ -22,15 +24,44 @@ public class TransactionController {
         return "transactions/index";
     }
 
-    @RequestMapping(value = "/transaction/submit", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/transaction/submit", method = RequestMethod.POST)
     @ResponseBody
-    public String JSONParse(WebRequest webRequest)
+    public String JSONParse(@RequestBody TransactionPayload transactionPayload)
     {
-        return "Yeay :3";
+        TransactionManagement(transactionPayload);
+        for (Product product : transactionPayload.getItemData()){
+            ProductManagement(product.getProductId(), product.getProductQuantity());
+        }
+        return "Success";
+    };
+
+    /**
+     * Digunakan untuk melakukan update pada product pasca pembelian
+     * @param productId
+     * @param productQuantity
+     */
+    private void ProductManagement(Long productId, int productQuantity)
+    {
+        System.out.println(productId);
+        Product product     =  serviceProduct.getProductById(productId);
+
+        int oldStock    = product.getProductStock();
+        int newStock    = oldStock - productQuantity;
+        product.setProductStock(newStock);
+        serviceProduct.update(product);
     }
-    //SaveTransaction
-    //DeleteTransaction
-    //UpdateTransaction
 
-
+    /**
+     * Digunakan untuk melakukan submit pada table transaksi
+     * @param transactionPayload
+     */
+    private void TransactionManagement(TransactionPayload transactionPayload)
+    {
+        Transaction transaction = new Transaction();
+        transaction.setSalesName(transactionPayload.getSalesName());
+        transaction.setDateField(transactionPayload.getTransactionDate());
+        transaction.setProductId(1);
+        transaction.setTotalItem(transactionPayload.getTotalItem());
+        serviceTransaction.add(transaction);
+    }
 }

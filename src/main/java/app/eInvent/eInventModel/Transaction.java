@@ -45,6 +45,11 @@ public class Transaction {
     public java.util.Date getDateField(){return date_trans;}
     public void setDateField(java.util.Date setDate){this.date_trans = setDate;}
 
+    public int getTotalItem() {
+        return totalItem;
+    }
 
-
+    public void setTotalItem(int totalItem) {
+        this.totalItem = totalItem;
+    }
 }

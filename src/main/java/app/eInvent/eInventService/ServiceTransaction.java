@@ -15,15 +15,18 @@ import java.util.List;
 @Service
 public class ServiceTransaction {
 
-   // @Autowired
-   // private TransactionDAO transDAO;
+    @Autowired
+    private TransactionDAO transDAO;
 
-    //Add Transaction
-    //Will Be Added Soon Waiting For JSON Format
+    public TransactionDAO getDAO() {
+        return transDAO;
+    }
 
-    //Delete Transaction
-    //Will Be Added Soon
-
-    //Update Transaction
-    //Will Be Added Soon
+    /**
+     * Digunakan untuk melakukan input transaksi
+     * @param transaction
+     */
+    public void add(Transaction transaction) {
+        transDAO.save(transaction);
+    }
 }

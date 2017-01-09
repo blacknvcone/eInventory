@@ -93,21 +93,31 @@ function cancelItem(position) {
 function submitTransaction(event) {
     event.preventDefault();
     var serialize = {
-        sales_name: $('#sales-name').val(),
-        transaction_date: $('#transaction-date').val(),
-        gross_amount: $('#gross-amount').val(),
-        item_data: []
+        "salesName": $('#sales-name').val(),
+        "transactionDate": $('#transaction-date').val(),
+        "grossAmount": $('#gross-amount').val(),
+        "totalItem": $("#render-transaksi tr").length,
+        "itemData": []
     };
     $("#render-transaksi > tr").each(function () {
-        serialize.item_data.push({
-            "product_id": $(this).find("#product-id").text(),
-            "product_name": $(this).find("#product-name").text(),
-            "product_quantity": $(this).find("#quantity").val(),
-            "product_subtotal": $(this).find("#render-price").text()
+        serialize.itemData.push({
+            "productId": $(this).find("#product-id").text(),
+            "productName": $(this).find("#product-name").text(),
+            "productQuantity": parseInt($(this).find("#quantity").val()),
+            "productSubtotal": $(this).find("#render-price").text()
         });
     });
-
     console.log(serialize);
-
-    $.post("/transaction/submit", serialize);
+    $.ajax({
+        url: "/transaction/submit",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(serialize),
+        success: function (data) {
+            if (data == "Success")
+            {
+                window.location.href = "http://localhost:8090/transaction";
+            }
+        }
+    });
 }
