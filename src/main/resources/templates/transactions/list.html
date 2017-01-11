@@ -1,0 +1,44 @@
+<html>
+<head th:replace="fragments/header :: header"></head>
+<body class="skin-blue sidebar-mini">
+<header th:replace="fragments/heading"></header>
+<aside th:replace="fragments/menu"></aside>
+<div class="content-wrapper">
+    <div class="content-header">
+        <h1>Daftar Transaksi</h1>
+    </div>
+    <div class="content">
+        <div class="box box-default">
+            <div class="box-body">
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Transaction Id</th>
+                        <th>Tanggal Transaksi</th>
+                        <th>Sales</th>
+                        <th>Nama Product</th>
+                        <th>Jumlah</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="trans: ${daftar_trans}">
+                        <td th:text="${trans.transId}"></td>
+                        <td th:text="${trans.dateTrans}"></td>
+                        <td th:text="${trans.salesName}"></td>
+
+                        <!--<td><div class="btn-group">-->
+                            <!--<a th:href="@{/product/edit-product/{id}(id=${product.productId})}" >-->
+                                <!--<button type="button" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>-->
+                            <!--<a th:href="@{/product/delete/{id}(id=${product.productId})}" >-->
+                                <!--<button type="button" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button></a>-->
+                        <!--</div></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

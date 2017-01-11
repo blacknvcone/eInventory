@@ -18,15 +18,15 @@ public class ServiceTransaction {
     @Autowired
     private TransactionDAO transDAO;
 
-    public TransactionDAO getDAO() {
-        return transDAO;
-    }
-
     /**
      * Digunakan untuk melakukan input transaksi
      * @param transaction
      */
     public void add(Transaction transaction) {
         transDAO.save(transaction);
+    }
+
+    public List<Transaction> getAllTransaction(){
+        return transDAO.findAll();
     }
 }

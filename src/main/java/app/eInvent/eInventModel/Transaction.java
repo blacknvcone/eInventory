@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Setter
 @Getter
@@ -22,6 +24,10 @@ public class Transaction {
     @GeneratedValue
     private long transId;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_trans")
+    private Date dateTrans;
+
     @Column(length = 60)
     private String salesName;
     @Column
@@ -29,9 +35,7 @@ public class Transaction {
     @Column(length = 10)
     private int totalItem;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_trans")
-    private java.util.Date date_trans;
+
 
     public Transaction(){}
 
@@ -44,13 +48,12 @@ public class Transaction {
     public long getProductId(){return productId;}
     public void setProductId(long proId){this.productId = proId;}
 
-    public java.util.Date getDateField(){return date_trans;}
-    public void setDateField(java.util.Date setDate){this.date_trans = setDate;}
+    public Date getDateField(){return dateTrans;}
+    public void setDateField(Date date_trans){this.dateTrans = date_trans;}
 
     public int getTotalItem() {
         return totalItem;
     }
-
     public void setTotalItem(int totalItem) {
         this.totalItem = totalItem;
     }
