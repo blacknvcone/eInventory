@@ -28,6 +28,10 @@ public class Transaction {
     @Column(name = "date_trans")
     private Date dateTrans;
 
+    @Column(name = "date_trans")
+    @Transient
+    private String dateTransString;
+
     @Column(length = 60)
     private String salesName;
     @Column
@@ -56,5 +60,13 @@ public class Transaction {
     }
     public void setTotalItem(int totalItem) {
         this.totalItem = totalItem;
+    }
+
+    public String getDateTransString() {
+        return dateTrans.toString();
+    }
+
+    public void setDateTransString(String dateTransString) {
+        this.dateTransString = dateTransString;
     }
 }

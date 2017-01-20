@@ -6,11 +6,20 @@ import app.eInvent.eInventPayload.TransactionPayload;
 import app.eInvent.eInventService.ServiceProduct;
 import app.eInvent.eInventService.ServiceTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -22,6 +31,7 @@ public class TransactionController {
     private ServiceTransaction serviceTransaction;
     @Autowired
     private ServiceProduct serviceProduct;
+
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
     public String index()
@@ -58,8 +68,6 @@ public class TransactionController {
             transaction.setTotalItem(product.getProductQuantity());
             serviceTransaction.add(transaction);
         }
-
-
     }
 
 
@@ -84,8 +92,7 @@ public class TransactionController {
      */
     @RequestMapping(value = "/transaction/list",method = RequestMethod.GET)
     public String TransactionList(Model model) {
-        model.addAttribute("daftar_trans",serviceTransaction.getAllTransaction());
-
+        model.addAttribute("daftar_trans", serviceTransaction.getAllTransaction());
         return "transactions/list";
     }
 
