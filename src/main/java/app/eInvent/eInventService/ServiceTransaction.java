@@ -27,6 +27,6 @@ public class ServiceTransaction {
     }
 
     public List<Transaction> getAllTransaction(){
-        return transDAO.findAll();
+        return transDAO.innerJoinTransaction();
     }
 }

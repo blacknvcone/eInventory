@@ -34,12 +34,17 @@ public class Transaction {
 
     @Column(length = 60)
     private String salesName;
-    @Column
-    private long productId;
+    //@Column
+    //private long productId;
     @Column(length = 10)
     private int totalItem;
 
+    @Column
+    private long product_Id;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    private Product product;
 
     public Transaction(){}
 
@@ -48,9 +53,6 @@ public class Transaction {
 
     public String getSalesName(){return salesName;}
     public void setSalesName(String sales){this.salesName = sales;}
-
-    public long getProductId(){return productId;}
-    public void setProductId(long proId){this.productId = proId;}
 
     public Date getDateField(){return dateTrans;}
     public void setDateField(Date date_trans){this.dateTrans = date_trans;}
@@ -68,5 +70,21 @@ public class Transaction {
 
     public void setDateTransString(String dateTransString) {
         this.dateTransString = dateTransString;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Long getProduct_Id() {
+        return product_Id;
+    }
+
+    public void setProduct_Id(Long product_Id) {
+        this.product_Id = product_Id;
     }
 }

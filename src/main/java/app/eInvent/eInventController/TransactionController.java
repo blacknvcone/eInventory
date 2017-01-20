@@ -64,7 +64,7 @@ public class TransactionController {
             Transaction transaction = new Transaction();
             transaction.setSalesName(transactionPayload.getSalesName());
             transaction.setDateField(transactionPayload.getTransactionDate());
-            transaction.setProductId(product.getProductId());
+            transaction.setProduct_Id(product.getProductId());
             transaction.setTotalItem(product.getProductQuantity());
             serviceTransaction.add(transaction);
         }
